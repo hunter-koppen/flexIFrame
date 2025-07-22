@@ -28,18 +28,20 @@
             </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Messages">
-            <property key="messageToSend" type="expression" defaultValue="" required="false">
+            <property key="messageToSend" type="attribute" required="false">
                 <caption>Message to send</caption>
                 <description>Message to send to the iframe. The message is sent when the value of this attribute changes.</description>
-                <returnType type="String" />
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
             </property>
             <property key="messageReceived" type="attribute" required="false">
-                    <caption>Message received</caption>
-                    <description>Message received from the iframe.</description>
-                    <attributeTypes>
-                        <attributeType name="String"/>
-                    </attributeTypes>
-                </property>
+                <caption>Message received</caption>
+                <description>Message received from the iframe.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
             <property key="onMessageReceived" type="action" required="false">
                 <caption>On message received</caption>
                 <description>Action to execute when a message is received from the iframe.</description>

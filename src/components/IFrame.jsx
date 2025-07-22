@@ -8,7 +8,6 @@ export function IFrameComponent({ url, width, height, messageToSend, onMessage }
             try {
                 const targetOrigin = new URL(url).origin;
                 iframeRef.current.contentWindow.postMessage(messageToSend.value, targetOrigin);
-                messageToSend.setValue(null);
             } catch (error) {
                 console.error("Invalid URL provided, cannot post message:", url, error);
             }
