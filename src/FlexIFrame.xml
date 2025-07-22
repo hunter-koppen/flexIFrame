@@ -1,16 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget id="kobeon.flexiframe.FlexIFrame" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
-        supportedPlatform="Web"
-        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+<widget id="kobeon.flexiframe.FlexIFrame" pluginWidget="true" needsEntityContext="true" offlineCapable="true" supportedPlatform="Web"
+    xmlns="http://www.mendix.com/widget/1.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Flex IFrame</name>
-    <description>My widget description</description>
+    <description/>
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
+            <propertyGroup caption="Datasource">
+                <property key="url" type="expression" defaultValue="" required="true">
+                    <caption>URL</caption>
+                    <description/>
+                    <returnType type="String" />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Display">
+                <property key="width" type="expression" defaultValue="" required="false">
+                    <caption>Width</caption>
+                    <description>Width of the iframe in pixels or percentage. Default is 100%.</description>
+                    <returnType type="String" />
+                </property>
+                <property key="height" type="expression" defaultValue="" required="false">
+                    <caption>Height</caption>
+                    <description>Height of the iframe in pixels or percentage. Default is 100%.</description>
+                    <returnType type="String" />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Messages">
+            <property key="messageToSend" type="expression" defaultValue="" required="false">
+                <caption>Message to send</caption>
+                <description>Message to send to the iframe. The message is sent when the value of this attribute changes.</description>
+                <returnType type="String" />
+            </property>
+            <property key="messageReceived" type="attribute" required="false">
+                    <caption>Message received</caption>
+                    <description>Message received from the iframe.</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            <property key="onMessageReceived" type="action" required="false">
+                <caption>On message received</caption>
+                <description>Action to execute when a message is received from the iframe.</description>
             </property>
         </propertyGroup>
     </properties>
