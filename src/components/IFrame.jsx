@@ -31,12 +31,17 @@ export function IFrameComponent({ url, width, height, messageToSend, onMessage }
         const handleMessage = event => {
             if (event.origin === expectedOrigin) {
                 if (iframeRef.current && event.source === iframeRef.current.contentWindow) {
+                    console.log("Received message from iframe:", event.data);
                     onMessage(event.data);
                 }
             }
         };
 
         window.addEventListener("message", handleMessage);
+
+        return () => {
+            window.removeEventListener("message", handleMessage);
+        };
     }, [url, onMessage]);
 
     return <iframe ref={iframeRef} src={url} title="iframe" style={{ width, height, border: "none" }} />;

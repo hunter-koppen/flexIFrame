@@ -10,7 +10,7 @@ export function FlexIFrame({ url, width, height, messageToSend, messageReceived,
             messageReceived.setValue(message);
         }
         if (onMessageReceived) {
-            onMessageReceived.execute(message);
+            onMessageReceived.execute();
         }
     };
     
