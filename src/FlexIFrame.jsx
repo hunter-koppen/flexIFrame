@@ -3,8 +3,7 @@ import { createElement } from "react";
 import { IFrameComponent } from "./components/IFrame";
 import "./ui/FlexIFrame.css";
 
-export function FlexIFrame({ url, width, height, messageToSend, messageReceived, onMessageReceived }) {
-
+export function FlexIFrame({ className, url, width, height, messageToSend, messageReceived, onMessageReceived }) {
     const handleMessageReceived = message => {
         if (messageReceived) {
             messageReceived.setValue(message);
@@ -13,7 +12,7 @@ export function FlexIFrame({ url, width, height, messageToSend, messageReceived,
             onMessageReceived.execute();
         }
     };
-    
+
     return (
         <IFrameComponent
             url={url.value}
@@ -21,6 +20,7 @@ export function FlexIFrame({ url, width, height, messageToSend, messageReceived,
             height={height?.value || "100%"}
             messageToSend={messageToSend}
             onMessage={handleMessageReceived}
+            classNames={className}
         />
     );
 }

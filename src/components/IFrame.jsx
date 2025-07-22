@@ -1,6 +1,6 @@
 import { createElement, useRef, useEffect } from "react";
 
-export function IFrameComponent({ url, width, height, messageToSend, onMessage }) {
+export function IFrameComponent({ className, url, width, height, messageToSend, onMessage }) {
     const iframeRef = useRef(null);
 
     useEffect(() => {
@@ -39,10 +39,19 @@ export function IFrameComponent({ url, width, height, messageToSend, onMessage }
 
         window.addEventListener("message", handleMessage);
 
+        // eslint-disable-next-line consistent-return
         return () => {
             window.removeEventListener("message", handleMessage);
         };
     }, [url, onMessage]);
 
-    return <iframe ref={iframeRef} src={url} title="iframe" style={{ width, height, border: "none" }} />;
+    return (
+        <iframe
+            ref={iframeRef}
+            className={"flex-iframe " + className}
+            src={url}
+            title="iframe"
+            style={{ width, height, border: "none" }}
+        />
+    );
 }
