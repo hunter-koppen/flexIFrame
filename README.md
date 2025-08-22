@@ -1,30 +1,13 @@
 ## FlexIFrame
-[My widget description]
+FlexIFrame is a widget that helps you embed an iframe to display external web content inside your app. Configure the URL and size, control security options (sandbox, referrerPolicy, allow), and use two‑way `window.postMessage` to send/receive data with the embedded page.
 
 ## Features
-[feature highlights]
+- Embed external content via a link
+- Control security options
+- Send messages through the iframe to the embedded page
 
 ## Usage
-[step by step instructions]
-
-## Demo project
-[link to sandbox]
+Add the widget to a page, set the URL, and ensure the target site allows embedding in iframes.
 
 ## Issues, suggestions and feature requests
-[link to GitHub issues]
-
-## Development and contribution
-
-1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing `npm -v`, execute: `npm install --legacy-peer-deps`.
-1. Run `npm start` to watch for code changes. On every change:
-    - the widget will be bundled;
-    - the bundle will be included in a `dist` folder in the root directory of the project;
-    - the bundle will be included in the `deployment` and `widgets` folder of the Mendix test project.
-
-[specify contribution]
-
-
-to do:
-sandbox etc settings
-title
-classname
+https://github.com/hunter-koppen/flexIFrame/issues

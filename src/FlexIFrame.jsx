@@ -3,7 +3,21 @@ import { createElement } from "react";
 import { IFrameComponent } from "./components/IFrame";
 import "./ui/FlexIFrame.css";
 
-export function FlexIFrame({ className, url, width, height, messageToSend, messageReceived, onMessageReceived }) {
+export function FlexIFrame(props) {
+    const {
+        url,
+        width,
+        height,
+        title,
+        messageToSend,
+        messageReceived,
+        onMessageReceived,
+        allow,
+        referrerPolicy,
+        sandbox,
+        loading
+    } = props;
+
     const handleMessageReceived = message => {
         if (messageReceived) {
             messageReceived.setValue(message);
@@ -16,11 +30,16 @@ export function FlexIFrame({ className, url, width, height, messageToSend, messa
     return (
         <IFrameComponent
             url={url.value}
+            title={title?.value || "flex-iframe"}
             width={width?.value || "100%"}
             height={height?.value || "100%"}
             messageToSend={messageToSend}
             onMessage={handleMessageReceived}
-            classNames={className}
+            className={props.class}
+            allow={allow}
+            referrerPolicy={referrerPolicy}
+            sandbox={sandbox}
+            loading={loading}
         />
     );
 }

@@ -4,7 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
     <name>Flex IFrame</name>
     <description/>
-    <icon/>
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="Datasource">
@@ -15,6 +14,11 @@
                 </property>
             </propertyGroup>
             <propertyGroup caption="Display">
+                <property key="title" type="expression" defaultValue="" required="false">
+                    <caption>Title</caption>
+                    <description>Title of the iframe (optional).</description>
+                    <returnType type="String" />
+                </property>
                 <property key="width" type="expression" defaultValue="" required="false">
                     <caption>Width</caption>
                     <description>Width of the iframe in pixels or percentage. Default is 100%.</description>
@@ -45,6 +49,24 @@
             <property key="onMessageReceived" type="action" required="false">
                 <caption>On message received</caption>
                 <description>Action to execute when a message is received from the iframe.</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Advanced">
+            <property key="allow" type="string" required="false">
+                <caption>Allow</caption>
+                <description>See https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy#the_iframe_allow_attribute for possible values (optional)</description>
+            </property>
+            <property key="referrerPolicy" type="string" required="false">
+                <caption>Referrer policy</caption>
+                <description>See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-referrerpolicy for possible values (optional)</description>
+            </property>
+            <property key="sandbox" type="string" required="false">
+                <caption>Sandbox</caption>
+                <description>See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox for possible values (optional)</description>
+            </property>
+            <property key="loading" type="string" required="false">
+                <caption>Loading</caption>
+                <description>See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-loading for possible values (optional)</description>
             </property>
         </propertyGroup>
     </properties>
