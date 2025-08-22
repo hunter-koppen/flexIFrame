@@ -4,6 +4,7 @@ export function IFrameComponent({
     classNames,
     url,
     html,
+    additionalStylesheet,
     type,
     width,
     height,
@@ -16,6 +17,28 @@ export function IFrameComponent({
     loading
 }) {
     const iframeRef = useRef(null);
+
+    const buildHtmlWithStylesheet = (rawHtml, href) => {
+        if (!rawHtml || !href) {
+            return rawHtml;
+        }
+
+        const linkTag = `<link rel="stylesheet" href="${href}">`;
+
+        if (/<head[^>]*>/i.test(rawHtml)) {
+            return rawHtml.replace(/<head([^>]*)>/i, `<head$1>${linkTag}`);
+        }
+
+        if (/<html[^>]*>/i.test(rawHtml)) {
+            return rawHtml.replace(/<html([^>]*)>/i, `<html$1><head>${linkTag}</head>`);
+        }
+
+        if (/<body[^>]*>/i.test(rawHtml)) {
+            return rawHtml.replace(/<body([^>]*)>/i, `<head>${linkTag}</head><body$1>`);
+        }
+
+        return `<head>${linkTag}</head>${rawHtml}`;
+    };
 
     useEffect(() => {
         if (messageToSend?.value && iframeRef.current && url) {
@@ -64,7 +87,7 @@ export function IFrameComponent({
             ref={iframeRef}
             className={classNames ? `flex-iframe ${classNames}` : "flex-iframe"}
             src={type === "url" ? url : undefined}
-            srcDoc={type === "html" ? html : undefined}
+            srcDoc={type === "html" ? buildHtmlWithStylesheet(html, additionalStylesheet) : undefined}
             title={title}
             style={{ width, height }}
             allow={allow}

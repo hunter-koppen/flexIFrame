@@ -25,6 +25,11 @@
                     <description>HTML content to load.</description>
                     <returnType type="String" />
                 </property>
+                <property key="additionalStylesheet" type="expression" defaultValue="" required="false">
+                    <caption>Additional stylesheet</caption>
+                    <description>Load an additional stylesheet (optional).</description>
+                    <returnType type="String" />
+                </property>
             </propertyGroup>
             <propertyGroup caption="Display">
                 <property key="title" type="expression" defaultValue="" required="false">

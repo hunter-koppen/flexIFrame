@@ -3,6 +3,7 @@ import { hidePropertyIn } from "@mendix/pluggable-widgets-tools";
 export function getProperties(values, defaultProperties, target) {
     if (values.type === "url") {
         hidePropertyIn(defaultProperties, values, "html");
+        hidePropertyIn(defaultProperties, values, "additionalStylesheet");
     }
     if (values.type === "html") {
         hidePropertyIn(defaultProperties, values, "url");
