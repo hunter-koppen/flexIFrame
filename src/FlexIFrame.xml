@@ -7,9 +7,22 @@
     <properties>
         <propertyGroup caption="General">
             <propertyGroup caption="Datasource">
-                <property key="url" type="expression" defaultValue="" required="true">
+                <property key="type" type="enumeration" defaultValue="url">
+                    <caption>Type</caption>
+                    <description>Load the content from a URL or from HTML.</description>
+                    <enumerationValues>
+                        <enumerationValue key="url">URL</enumerationValue>
+                        <enumerationValue key="html">HTML</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="url" type="expression" defaultValue="" required="false">
                     <caption>URL</caption>
-                    <description/>
+                    <description>URL of the content to load.</description>
+                    <returnType type="String" />
+                </property>
+                <property key="html" type="expression" defaultValue="" required="false">
+                    <caption>HTML</caption>
+                    <description>HTML content to load.</description>
                     <returnType type="String" />
                 </property>
             </propertyGroup>

@@ -6,6 +6,8 @@ import "./ui/FlexIFrame.css";
 export function FlexIFrame(props) {
     const {
         url,
+        html,
+        type,
         width,
         height,
         title,
@@ -29,7 +31,9 @@ export function FlexIFrame(props) {
 
     return (
         <IFrameComponent
-            url={url.value}
+            url={type === "url" ? url?.value : undefined}
+            html={type === "html" ? html?.value : undefined}
+            type={type}
             title={title?.value || "flex-iframe"}
             width={width?.value || "100%"}
             height={height?.value || "100%"}

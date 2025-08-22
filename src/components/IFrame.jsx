@@ -3,6 +3,8 @@ import { createElement, useRef, useEffect } from "react";
 export function IFrameComponent({
     classNames,
     url,
+    html,
+    type,
     width,
     height,
     title,
@@ -61,7 +63,8 @@ export function IFrameComponent({
         <iframe
             ref={iframeRef}
             className={classNames ? `flex-iframe ${classNames}` : "flex-iframe"}
-            src={url}
+            src={type === "url" ? url : undefined}
+            srcDoc={type === "html" ? html : undefined}
             title={title}
             style={{ width, height }}
             allow={allow}
