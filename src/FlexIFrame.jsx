@@ -35,7 +35,7 @@ export function FlexIFrame(props) {
             height={height?.value || "100%"}
             messageToSend={messageToSend}
             onMessage={handleMessageReceived}
-            className={props.class}
+            classNames={props.class}
             allow={allow}
             referrerPolicy={referrerPolicy}
             sandbox={sandbox}

@@ -1,6 +1,18 @@
 import { createElement, useRef, useEffect } from "react";
 
-export function IFrameComponent({ className, url, width, height, title, messageToSend, onMessage, allow, referrerPolicy, sandbox, loading }) {
+export function IFrameComponent({
+    classNames,
+    url,
+    width,
+    height,
+    title,
+    messageToSend,
+    onMessage,
+    allow,
+    referrerPolicy,
+    sandbox,
+    loading
+}) {
     const iframeRef = useRef(null);
 
     useEffect(() => {
@@ -48,7 +60,7 @@ export function IFrameComponent({ className, url, width, height, title, messageT
     return (
         <iframe
             ref={iframeRef}
-            className={className ? `flex-iframe ${className}` : "flex-iframe"}
+            className={classNames ? `flex-iframe ${classNames}` : "flex-iframe"}
             src={url}
             title={title}
             style={{ width, height }}
