@@ -29,7 +29,7 @@ export function getPreview(values, isDarkMode) {
                     {
                         type: "Text",
                         fontColor: isDarkMode ? "#579BF9" : "#2D2FB8",
-                        content: "Flex IFrame " + values.url
+                        content: "Flex IFrame " + (values.type === "url" ? values.url : values.type === "html" ? values.html : "")
                     }
                 ]
             },
