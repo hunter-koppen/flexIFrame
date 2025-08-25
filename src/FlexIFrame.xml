@@ -48,6 +48,12 @@
                     <returnType type="String" />
                 </property>
             </propertyGroup>
+            <propertyGroup caption="Events">
+                <property key="onLoad" type="action" required="false">
+                    <caption>On load</caption>
+                    <description>Action to execute when the iframe is loaded.</description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Messages">
             <property key="messageToSend" type="attribute" required="false">

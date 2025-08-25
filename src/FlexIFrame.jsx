@@ -18,7 +18,8 @@ export function FlexIFrame(props) {
         allow,
         referrerPolicy,
         sandbox,
-        loading
+        loading,
+        onLoad
     } = props;
 
     const handleMessageReceived = message => {
@@ -27,6 +28,12 @@ export function FlexIFrame(props) {
         }
         if (onMessageReceived) {
             onMessageReceived.execute();
+        }
+    };
+
+    const handleLoad = () => {
+        if (onLoad) {
+            onLoad.execute();
         }
     };
 
@@ -46,6 +53,7 @@ export function FlexIFrame(props) {
             referrerPolicy={referrerPolicy}
             sandbox={sandbox}
             loading={loading}
+            onLoad={handleLoad}
         />
     );
 }

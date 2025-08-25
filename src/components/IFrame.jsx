@@ -14,7 +14,8 @@ export function IFrameComponent({
     allow,
     referrerPolicy,
     sandbox,
-    loading
+    loading,
+    onLoad
 }) {
     const iframeRef = useRef(null);
 
@@ -94,6 +95,7 @@ export function IFrameComponent({
             referrerPolicy={referrerPolicy}
             sandbox={sandbox}
             loading={loading}
+            onLoad={onLoad}
         />
     );
 }
