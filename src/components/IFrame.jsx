@@ -91,10 +91,10 @@ export function IFrameComponent({
             srcDoc={type === "html" ? buildHtmlWithStylesheet(html, additionalStylesheet) : undefined}
             title={title}
             style={{ width, height }}
-            allow={allow}
-            referrerPolicy={referrerPolicy}
-            sandbox={sandbox}
-            loading={loading}
+            {...(allow && { allow })}
+            {...(referrerPolicy && { referrerPolicy })}
+            {...(sandbox && { sandbox })}
+            {...(loading && { loading })}
             onLoad={onLoad}
         />
     );
