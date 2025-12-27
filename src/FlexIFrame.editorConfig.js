@@ -7,9 +7,6 @@ export function getProperties(values, defaultProperties, target) {
     }
     if (values.type === "html") {
         hidePropertyIn(defaultProperties, values, "url");
-        hidePropertyIn(defaultProperties, values, "messageToSend");
-        hidePropertyIn(defaultProperties, values, "messageReceived");
-        hidePropertyIn(defaultProperties, values, "onMessageReceived");
     }
     return defaultProperties;
 }
