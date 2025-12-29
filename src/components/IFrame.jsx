@@ -43,15 +43,25 @@ export function IFrameComponent({
 
     useEffect(() => {
         if (messageToSend?.value && iframeRef.current) {
+            let message = messageToSend.value;
+            try {
+                const parsed = JSON.parse(message);
+                if (parsed && typeof parsed === "object") {
+                    message = parsed;
+                }
+            } catch (error) {
+                // Not a JSON string, ensure message remains as is
+            }
+
             if (type === "url" && url) {
                 try {
                     const targetOrigin = new URL(url).origin;
-                    iframeRef.current.contentWindow.postMessage(messageToSend.value, targetOrigin);
+                    iframeRef.current.contentWindow.postMessage(message, targetOrigin);
                 } catch (error) {
                     console.error("Invalid URL provided, cannot post message:", url, error);
                 }
             } else if (type === "html") {
-                iframeRef.current.contentWindow.postMessage(messageToSend.value, "*");
+                iframeRef.current.contentWindow.postMessage(message, "*");
             }
         }
     }, [messageToSend, url, type]);

@@ -63,16 +63,12 @@
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
-            <property key="messageReceived" type="attribute" required="false">
-                <caption>Message received</caption>
-                <description>Message received from the iframe.</description>
-                <attributeTypes>
-                    <attributeType name="String"/>
-                </attributeTypes>
-            </property>
             <property key="onMessageReceived" type="action" required="false">
                 <caption>On message received</caption>
-                <description>Action to execute when a message is received from the iframe.</description>
+                <description>Action to execute when a message is received from the iframe, note the message is passed as a string to the action.</description>
+                <actionVariables>
+                    <actionVariable key="messageReceived" type="String" caption="Message received" />
+                </actionVariables>
             </property>
         </propertyGroup>
         <propertyGroup caption="Advanced">

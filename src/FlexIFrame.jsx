@@ -13,7 +13,6 @@ export function FlexIFrame(props) {
         height,
         title,
         messageToSend,
-        messageReceived,
         onMessageReceived,
         allow,
         referrerPolicy,
@@ -23,11 +22,11 @@ export function FlexIFrame(props) {
     } = props;
 
     const handleMessageReceived = message => {
-        if (messageReceived) {
-            messageReceived.setValue(message);
-        }
         if (onMessageReceived) {
-            onMessageReceived.execute();
+            const value = typeof message === "object" ? JSON.stringify(message) : message;
+            onMessageReceived.execute({
+                messageReceived: value
+            });
         }
     };
 
