@@ -42,36 +42,41 @@ export function IFrameComponent({
     };
 
     useEffect(() => {
-        if (messageToSend?.value && iframeRef.current && url) {
-            try {
-                const targetOrigin = new URL(url).origin;
-                iframeRef.current.contentWindow.postMessage(messageToSend.value, targetOrigin);
-            } catch (error) {
-                console.error("Invalid URL provided, cannot post message:", url, error);
+        if (messageToSend?.value && iframeRef.current) {
+            if (type === "url" && url) {
+                try {
+                    const targetOrigin = new URL(url).origin;
+                    iframeRef.current.contentWindow.postMessage(messageToSend.value, targetOrigin);
+                } catch (error) {
+                    console.error("Invalid URL provided, cannot post message:", url, error);
+                }
+            } else if (type === "html") {
+                iframeRef.current.contentWindow.postMessage(messageToSend.value, "*");
             }
         }
-    }, [messageToSend, url]);
+    }, [messageToSend, url, type]);
 
     useEffect(() => {
-        if (!url) {
-            return;
-        }
-
         let expectedOrigin;
-        try {
-            expectedOrigin = new URL(url).origin;
-        } catch (error) {
-            // if the url is not valid, we can't check the origin, so we shouldn't listen for messages
-            console.error("Invalid URL provided to IFrameComponent:", url, error);
-            return;
+        if (type === "url" && url) {
+            try {
+                expectedOrigin = new URL(url).origin;
+            } catch (error) {
+                // if the url is not valid, we can't check the origin, so we shouldn't listen for messages
+                console.error("Invalid URL provided to IFrameComponent:", url, error);
+            }
         }
 
         const handleMessage = event => {
-            if (event.origin === expectedOrigin) {
-                if (iframeRef.current && event.source === iframeRef.current.contentWindow) {
-                    console.log("Received message from iframe:", event.data);
-                    onMessage(event.data);
+            // Check if the message comes from our iframe
+            if (iframeRef.current && event.source === iframeRef.current.contentWindow) {
+                // For URL type, strictly match origin
+                if (type === "url" && expectedOrigin && event.origin !== expectedOrigin) {
+                    return;
                 }
+
+                console.log("Received message from iframe:", event.data);
+                onMessage(event.data);
             }
         };
 
@@ -81,7 +86,7 @@ export function IFrameComponent({
         return () => {
             window.removeEventListener("message", handleMessage);
         };
-    }, [url, onMessage]);
+    }, [url, onMessage, type]);
 
     return (
         <iframe
